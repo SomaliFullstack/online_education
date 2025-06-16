@@ -1,0 +1,80 @@
+{% extends 'student_base.html' %}
+
+{% block title %}Teacher Notifications{% endblock %}
+
+{% block content %}
+<style>
+    .container h2 {
+        margin-top: 5%;
+    }
+    .notification-card {
+    max-width: 600px;
+    max-height: 300px;
+    margin: auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<div class="container mt-4">
+    <h2>Notifications</h2>
+
+    <!-- Loop through notifications and display as cards -->
+    <div class="notification-cards">
+        {% for notification in notifications %}
+            <div class="card notification-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">New Notification</h5>
+                    <p class="card-text">{{ notification[0][:50] }}...</p>  <!-- Show first 50 characters -->
+
+                    <p class="text-muted">{{ notification[1].strftime('%Y-%m-%d %H:%M:%S') }}</p>  <!-- Timestamp -->
+
+                    <!-- Read More button -->
+                    <button class="btn btn-primary"
+                            type="button"
+                            id="read-more-btn-{{ loop.index }}"
+                            onclick="toggleMessage({{ loop.index }})">
+                        Read More
+                    </button>
+
+                    <!-- Collapsible full message -->
+                    <div id="message-{{ loop.index }}" class="collapse mt-3">
+                        <p>{{ notification[0] }}</p>  <!-- Full message displayed here -->
+
+                        <!-- Hide Message button -->
+                        <button class="btn btn-secondary mt-2 d-none"
+                                id="hide-btn-{{ loop.index }}"
+                                onclick="toggleMessage({{ loop.index }})">
+                            Hide Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>No notifications available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function toggleMessage(index) {
+        var messageDiv = document.getElementById('message-' + index);
+        var readMoreBtn = document.getElementById('read-more-btn-' + index);
+        var hideBtn = document.getElementById('hide-btn-' + index);
+
+        if (messageDiv.classList.contains('show')) {
+            // Hide message and show "Read More" button
+            messageDiv.classList.remove('show');
+            readMoreBtn.classList.remove('d-none');
+            hideBtn.classList.add('d-none');
+        } else {
+            // Show message and display "Hide Message" button
+            messageDiv.classList.add('show');
+            readMoreBtn.classList.add('d-none');
+            hideBtn.classList.remove('d-none');
+        }
+    }
+</script>
+
+{% endblock %}

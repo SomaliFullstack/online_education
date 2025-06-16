@@ -1,0 +1,50 @@
+<!-- templates/student_exam.html -->
+{% extends 'student_base.html' %}
+
+{% block title %}Student Exam{% endblock %}
+
+{% block content %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Student Exam Results</h1>
+
+   <div class="form-group">
+  <label for="course-select">Select Course:</label>
+  <select class="form-control" id="course-select">
+    <option value="">-- Select a Course --</option>
+    {% for course in paid_courses %}
+      <option value="{{ course[0] }}">{{ course[1] }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+    <!-- Display Exam Results -->
+    <div id="result-section" class="mt-4">
+      {% if marks %}
+        {% for result in marks %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ result.course_name }}</h5>
+              <p class="card-text"><strong>Marks:</strong> {{ result.marks }}</p>
+              <p class="card-text"><strong>Grade:</strong> {{ result.grade }}</p>
+              <p class="card-text"><strong>Position:</strong> {{ result.position }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-warning">
+          No exam data is available for the selected course.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

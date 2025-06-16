@@ -1,0 +1,82 @@
+{% extends 'base2.html' %}
+
+{% block title %}Teacher Notifications{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Notifications</h2>
+
+    <!-- Loop through notifications and display as cards -->
+    <div class="notification-cards">
+        {% for notification in notifications %}
+            <div class="card notification-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">New Notification</h5>
+                    <p class="card-text">{{ notification[0] | truncate(50) }}...</p>  <!-- Show first 50 characters of message -->
+                    <p class="text-muted">{{ notification[1].strftime('%Y-%m-%d %H:%M:%S') }}</p>  <!-- Timestamp -->
+
+                    <!-- Button with Bootstrap collapse functionality -->
+                    <button class="btn btn-primary"
+                            type="button"
+                            id="toggle-btn-{{ loop.index }}"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#message-{{ loop.index }}"
+                            aria-expanded="false"
+                            aria-controls="message-{{ loop.index }}"
+                            onclick="toggleMessageText({{ loop.index }})">
+                        Read More
+                    </button>
+
+                    <!-- Collapsible content -->
+                    <div id="message-{{ loop.index }}" class="collapse mt-3">
+                        <p>{{ notification[0] }}</p>  <!-- Full message will be displayed here when collapsed is toggled -->
+                    </div>
+
+                    <!-- Hide button (initially hidden) -->
+                    <button class="btn btn-secondary d-none"
+                            type="button"
+                            id="hide-btn-{{ loop.index }}"
+                            onclick="hideMessageText({{ loop.index }})">
+                        Hide Message
+                    </button>
+                </div>
+            </div>
+        {% else %}
+            <p>No notifications available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+<script>
+    // Function to toggle between "Read More" and "Hide Message"
+    function toggleMessageText(index) {
+        var toggleBtn = document.getElementById('toggle-btn-' + index);
+        var hideBtn = document.getElementById('hide-btn-' + index);
+        var collapseElement = document.getElementById('message-' + index);
+
+        // Check if the message is expanded (i.e., class 'show' is present)
+        if (collapseElement.classList.contains('show')) {
+            // Show the "Hide Message" button and remove "Read More" button
+            toggleBtn.classList.add('d-none');
+            hideBtn.classList.remove('d-none');
+        } else {
+            // Show the "Read More" button and remove "Hide Message" button
+            toggleBtn.classList.remove('d-none');
+            hideBtn.classList.add('d-none');
+        }
+    }
+
+    // Function to hide message and show "Read More" button again
+    function hideMessageText(index) {
+        var toggleBtn = document.getElementById('toggle-btn-' + index);
+        var hideBtn = document.getElementById('hide-btn-' + index);
+        var collapseElement = document.getElementById('message-' + index);
+
+        // Hide the message and show the "Read More" button again
+        collapseElement.classList.remove('show');
+        toggleBtn.classList.remove('d-none');
+        hideBtn.classList.add('d-none');
+    }
+</script>

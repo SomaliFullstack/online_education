@@ -1,0 +1,16 @@
+{% extends "student_base.html" %}
+{% block title %}Submit Assignment{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Submit Assignment</h1>
+    <p>Student: {{ student_name }}</p>
+
+    <form method="POST">
+        <label>Google Drive Link</label>
+        <input type="url" name="assignment_link" class="form-control mb-2" placeholder="Enter Google Drive link" required>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

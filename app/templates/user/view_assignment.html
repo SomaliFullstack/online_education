@@ -1,0 +1,90 @@
+{% extends "student_base.html" %}
+{% block title %}View Assignment{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="assignment-view">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>{{ assignment['title'] }}</h1>
+            <span class="badge
+                {% if submission_exists %}bg-success
+                {% else %}bg-danger{% endif %}">
+                {% if submission_exists %}Submitted{% else %}Not Submitted{% endif %}
+            </span>
+        </div>
+
+        <div class="assignment-meta mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                   <p><strong>Course:</strong>
+                        {{ assignment['course_name'] or '(No course assigned)' }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Due Date:</strong> {{ assignment.due_date.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="assignment-content card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Assignment Details</h4>
+                <div class="card-text">
+                    {{ assignment.description|safe }}
+                </div>
+            </div>
+        </div>
+
+        {% if assignment.attachments %}
+        <div class="assignment-files card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Attachments</h4>
+                <ul class="list-group list-group-flush">
+                    {% for file in assignment.attachments %}
+                    <li class="list-group-item">
+                        <a href="{{ url_for('download_assignment_file', file_id=file.id) }}" class="text-decoration-none">
+                            <i class="bi bi-file-earmark-arrow-down me-2"></i>{{ file.filename }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="assignment-actions">
+            <a href="{{ url_for('student_assignment') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Assignments
+            </a>
+            <a href="{{ url_for('submit_assignment', assignment_id=assignment.id) }}" class="btn btn-primary float-end">
+                <i class="bi bi-upload"></i> Submit Assignment
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .assignment-view {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .assignment-content img {
+        max-width: 100%;
+        height: auto;
+    }
+    .assignment-actions {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+
+    }
+    .assignment-actions a{
+        width:200px;
+        color:white;
+    }
+    .assignment-actions a:hover{
+
+        color:white;
+    }
+</style>
+{% endblock %}

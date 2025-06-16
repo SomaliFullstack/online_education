@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>caawiye</title>
+    
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- MDBootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+   
+
+
+    <style>
+      :root {
+  --primary-blue: #007bff;
+  --dark-blue: #041340;
+  --light-blue: #d2e2f7;
+  --accent-red: #dc3545;
+  --accent-orange: #fd7e14;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+  --light-gray: #f8f9fa;
+}
+      /* Dark Mode Styles */
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff !important;
+}
+
+body.dark-mode span{
+  color: white !important;
+}
+body.dark-mode h2 span{
+  color: rgb(244, 244, 244);
+}
+body.dark-mode h2{
+  color: #041340;
+}
+body.dark-mode h1,
+
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p {
+  color: #ffffff !important;
+}
+body.dark-mode .course-card1{
+  background-color: #1f1f1f;
+  color: #ffffff !important;
+  border-color: #333;
+}
+body.dark-mode .contact-section{
+  background-color: #555;
+}
+body.dark-mode .nav-link:hover{
+        color: white !important;
+      }
+body.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #ffffff !important;
+  border-color: #333;
+}
+
+body.dark-mode .btn {
+  background-color: rgba(3, 112, 255, 1);
+  box-shadow: none !important;
+  color: #ffffff;
+}
+body.dark-mode .contact{
+  background-color: #333 !important;
+}
+body.dark-mode .form-control {
+  background-color: #333;
+  color: #ffffff;
+  border-color: #555;
+}
+body.dark-mode nav{
+ /* background-color: transparent !important */
+}
+body.dark-mode .sticky{
+  position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgb(51, 51, 51,0.9) !important; /* Semi-transparent background */
+      backdrop-filter: blur(20px); /* Blur effect */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+      padding: 10px 20px;
+}
+
+body.dark-mode  #footer {
+  background-color: #1f1f1f !important;
+  color: #ffffff !important;
+}
+body.dark-mode  #footer h2{
+  color: white;
+}
+
+body.dark-mode  #footer a {
+  color: #ffffff !important;
+}
+
+body.dark-mode  #footer .social-icons a {
+  background-color: #333;
+  color: #ffffff !important;
+}
+
+body.dark-mode  #footer .social-icons a:hover {
+  background-color: #007bff;
+  color: #ffffff !important;
+}
+
+body.dark-mode .background{
+  background-color: #121212 !important;
+}
+
+/* Remove blue background from the theme toggle button */
+#theme-toggle {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#theme-toggle:hover {
+  background-color: transparent !important;
+}
+
+/* Add more dark mode styles as needed */
+      body{
+        overflow-x: hidden;
+        
+      }
+      .nav-link {
+        color: rgb(0, 123, 255) !important;
+        
+      }
+      .nav-link:hover{
+        color: black !important;
+      }
+      .background{
+        background: linear-gradient(rgba(255, 0, 0, 0.7), rgb(4, 19, 64,0.2) ), url('/static/img/close-up-image-programer-working-his-desk-office.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center;
+      }
+      .background h1{
+        font-size: 56px; 
+        font-weight: bold;
+        color: white;
+      }
+      .background p{
+        font-size: 24px; /* 1.5rem = 24px */
+        margin-top: 20px;
+        color: white;
+      }
+      /* Navbar styling */
+      nav {
+        box-shadow: none !important;
+        background-color: rgb(212, 212, 212,0.7);
+
+        backdrop-filter: blur(20px);
+      }
+     
+      .btn {
+        background-color: rgba(3, 112, 255, 1);
+        color: white;
+      }
+      .btn:hover {
+        background-color: rgba(2, 102, 255, 0.2);
+        color: white;
+      }
+      /* Button styling for #btn2 */
+      #btn2 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+      body.sticky-padding {
+  padding-top: 70px; /* Adjust this value based on the height of your navbar */
+}
+     .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgb(212, 212, 212,0.7);/* Semi-transparent background */
+      backdrop-filter: blur(20px); /* Blur effect */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+      padding: 10px 20px;
+}
+
+
+      .navbar .container {
+        margin-top: 0%;
+        height: 70px;
+      }
+      .course-card1 {
+        display: flex;
+        align-items: center;
+        height: 100px;
+        /* justify-content: space-evenly; */
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: box-shadow 0.3s;
+        background-color: #f8f9fa;
+      }
+      
+      .course-card1:hover {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .course-icon {
+        font-size: 2rem;
+        color: #007bff;
+      }
+      .course-info {
+        margin: 12px;
+        margin-left: 10%;
+      }
+      .contact-info {
+        
+        margin-left: 10%;
+        
+      }
+ 
+      .course-info h6 {
+        margin: 0;
+        font-weight: bold;
+      }
+      .course-info p {
+        margin: 0;
+        font-size: 16px;
+        color: gray;
+      }
+      .contact-section {
+        background-color: #f8f9fa;
+        padding: 50px;
+        border-radius: 10px;
+      }
+      .contact-info h6 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .contact-info p {
+        color: #6c757d;
+       
+        font-size: 17px;
+      }
+      .contact {
+        background: #ffffff ;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        transition: box-shadow 0.3s;
+      }
+      .contact:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .contact-icon {
+        font-size: 2rem;
+        color: #007bff;
+        margin-right: 15px;
+      }
+      .form-control {
+        border-radius: 8px;
+      }
+      .button {
+        border-radius: 8px;
+      }
+      /* Centering container */
+      #container {
+        
+        
+        border-radius: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        
+      }
+      .fit .carousel img{
+        height: 50vh;
+      }
+      .ourse_card{
+        max-width: 100%;
+        height: 500px;
+        border: 1px solid #ccc;
+      }
+      .card {
+        max-width: 100%;
+        height: 500px; 
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 7px;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+      }
+      .card-image {
+        width: 100%; 
+        height: 60%; 
+        object-fit: cover; 
+        border-radius: 5px;
+      }
+      /* Image styling */
+      .image img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh; /* Control image height */
+        object-fit: cover; /* Ensure image covers the space */
+        border-radius: 7px;
+      }
+      /* Text responsiveness */
+      h1,
+      p {
+        font-size: 1.2rem;
+      }
+      /* Navbar items alignment */
+      .navbar-nav {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+      }
+      .category-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #1e6fd9;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+      .category-button:hover {
+        transform: scale(1.05);
+      }
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #007bff;
+        color: #333;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+      }
+      .social-icons a:hover {
+        background-color: #007bff;
+        color: white;
+        transform: scale(1.1);
+      }
+      .card {
+      
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.2s;
+
+      }
+      .card img{
+        height: 50%;
+        transition: transform 0.3s ease;
+      }
+      .card img:hover{
+        transform: scale(1.02);
+      }
+
+      .container {
+        text-align: center;
+        position: relative;
+        margin-top: 50px;
+
+      }
+
+      .whatsapp-icon {
+        font-size: 50px; /* Increase size of the icon */
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #007bff;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 50%;
+        top: 86%;
+        right: 1%;
+        z-index: 10000000;
+        padding: 10px;
+        position: fixed; /* Fixed position for icon */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .whatsapp-icon i {
+        font-size: 30px; /* Adjust the size of the icon inside */
+      }
+
+      #theme-toggle i {
+  color: #007bff; /* Icon color */
+  width: 40px; /* Set width */
+  height: 40px; /* Set height */
+  display: flex;
+  align-items: center;
+  background-color: white !important;
+  justify-content: center;
+  border: 2px solid #007bff; /* Optional: Add a border */
+  border-radius: 50%; /* Make it circular */
+  background-color: transparent; /* Transparent background */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+#theme-toggle:hover i{
+  background-color: #041340 !important; /* Change background on hover */
+  
+}
+      .whatsapp-icon:hover {
+        color: rgb(214, 214, 214);
+      }
+      .card-body img {
+        height: 50%;
+        border-radius: 4%;
+      }
+      .card-body h5 {
+        margin-top: 10%;
+      }
+      .card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.fa-star {
+  color: gold;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  color: #333;
+}
+.card2{
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: transparent !important;
+      width: 35%;
+      height: 320px;
+      margin: 10px;
+    }
+    .card2.active{
+      background-color: #007bff !important;
+      border: 1px solid #041340 !important;
+      color:white !important;
+    }
+    .card2.active p{
+      color: white !important;
+     
+    }
+    .card2 h4{
+        font-weight:bold;
+    }
+    .card2 .active {
+        color: red !important;
+    }
+
+    
+.icons-container i {
+  margin-right: 5px;
+  display: inline-flex;
+  align-items: center;
+  color: white;
+}
+form[action="https://formspree.io/f/myzzbjdw"] + div {
+    display: none;
+}
+.navbar-nav .nav-link:hover {
+      color: #007bff; /* Blue color on hover */
+    }
+.btn-primary {
+  background-color: #1e6fd9;
+  border-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+.wel{
+  font-weight: SemiBold 600;
+  font-weight: bold;
+  font-size: 40px;
+  color: #041340;
+}
+.btn-primary:hover {
+  background-color: #1e6fd8;
+  border-color: #0056b3;
+}
+.btm-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Adds spacing between the buttons */
+  margin-top: 15px; /* Adds space between this container and other elements */
+}
+
+.btm-container a {
+  flex: 1; /* Ensures the buttons take equal width */
+  text-decoration: none; /* Removes underline from links */
+}
+
+.btm-container .btn {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+ /* Off-canvas sidebar styles */
+ .offcanvas-start {
+      width: 250px !important; /* Set the width of the sidebar */
+      height: 100vh; /* Make the sidebar take up the full height of the viewport */
+      background-color: #f8f9fa; /* Light background for off-canvas */
+    }
+
+    .offcanvas-body {
+      padding: 20px;
+      
+      
+    }
+
+    .offcanvas-body .nav-link {
+      color: #333; /* Default link color */
+      transition: color 0.3s ease; /* Smooth transition */
+    }
+
+    .offcanvas-body .nav-link:hover {
+      color: #007bff; /* Blue color on hover */
+    }
+
+
+    .carousel-item img {
+      object-fit: cover;
+      border-radius: 8px;
+      height: 300px; /* Set a fixed height for the images */
+    }
+
+    .faq-card {
+            width: 100%; /* Adjust width as needed */
+            max-width: 600px; /* Maximum width */
+            height: auto; /* Adjust height as needed */
+            margin: 10px auto; /* Center the card */
+            border: 1px solid #ddd; /* Optional border */
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden; /* Ensure content fits within the card */
+        }
+        .faq-card .card-header {
+            background-color: #2180de; /* Light background for header */
+            cursor: pointer; /* Pointer cursor to indicate clickable */
+        }
+        .faq-card .card-body {
+            display: none; /* Initially hide the body */
+            padding: 15px; /* Padding inside the body */
+        }
+        .faq-card.active .card-body {
+            display: block; /* Show the body when active */
+        }
+
+    @media (max-width: 991.98px) {
+      .navbar-brand {
+        display: none; /* Hide the logo on small screens */
+      }
+
+      .navbar-toggler {
+        margin-left: auto; /* Push menu icon to the right */
+      }
+
+      #theme-toggle {
+        position: absolute;
+        left: 50%; /* Center the theme toggle */
+        transform: translateX(-50%);
+      }
+    }
+
+      /* Adjust layout for very small screens */
+      @media (max-width: 576px) {
+        .category-button {
+          font-size: 14px;
+          padding: 8px 15px;
+        }
+      }
+      /* Responsive layout changes */
+      @media (max-width: 768px) {
+        
+  .background{
+    
+    height: fit-content;
+    
+  }
+        .d-flex {
+          flex-wrap: wrap;
+          justify-content: center;
+          
+        }
+        .background h1 {
+        font-size: 36px; /* Smaller font size for smaller screens */
+    }
+
+    .background p {
+        font-size: 18px; /* Smaller font size for smaller screens */
+    }
+
+    .background .btn {
+        font-size: 16px; /* Smaller button font size for smaller screens */
+        padding: 8px 16px; /* Smaller button padding for smaller screens */
+    }
+        .card2 {
+    width: 80%; /* Full width for smaller screens */
+    height: auto;
+    margin: 15px 0; /* Adjust margins for stacked layout */
+  }
+        .category-button {
+          margin-bottom: 10px;
+          width: 100%;
+          max-width: 300px; /* Optional: Limit button width */
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+        #container {
+          flex-direction: column; /* Stack content vertically */
+          text-align: center;
+        }
+        .col-md-7,
+        .col-md-5 {
+          flex: 0 0 100%; 
+          max-width: 100%;
+        }
+        #footer.justify-content-end{
+          display: flex;
+          justify-content: center;
+          background-color: red;
+        }
+        .image img {
+          max-height: 50vh; /* Reduce image size on small screens */
+        }
+      }
+     
+      @media (max-width: 480px) {
+    .background h1 {
+        font-size: 28px; /* Even smaller font size for very small screens */
+    }
+
+    .background p {
+        font-size: 16px; /* Even smaller font size for very small screens */
+    }
+
+    .background .btn {
+        font-size: 14px; /* Even smaller button font size for very small screens */
+        padding: 6px 12px; /* Even smaller button padding for very small screens */
+    }
+}
+
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container">
+        <img src="/static/img/Caawiye_profile-removebg-preview.png" alt="logo" width="80px" height="50px">
+
+        <!-- Toggle button to open off-canvas sidebar (visible only on small screens) -->
+        <button
+          class="navbar-toggler d-lg-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample"
+        >
+          <i class="fas fa-align-right" style="color:#007bff !important;"></i>
+        </button>
+
+        <!-- Regular navbar links (visible on large screens) -->
+        <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#course">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('about')}}">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contacts</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <a href="{{url_for('log_in')}}">
+              <button type="submit" class="btn mx-3 H-100" style="background-color: #dfdfdf; color: #1e6fd9; box-shadow: none !important; border: 2px; border: 2px solid white;">gal-xisaabtaada</button>
+            </a>
+            <a href="{{url_for('register')}}">
+              <button type="submit" class="btn btn-primary mx-3" style="box-shadow: none !important;">isdiiwaangeli</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- Theme toggle button -->
+        <button id="theme-toggle" class="btn btn-outline-secondary ms-auto">
+          <i id="theme-icon" class="fas fa-moon"></i> <!-- Default icon for dark mode -->
+        </button>
+
+        <!-- Off-canvas sidebar (visible only on small screens) -->
+        <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <!-- Links -->
+            <ul class="list-unstyled mb-4">
+              <li>
+                <a href="#" class="nav-link">Home</a>
+              </li>
+              <li>
+                <a href="#course" class="nav-link">Courses</a>
+              </li>
+              <li>
+                <a href="{{url_for('about')}}" class="nav-link">About us</a>
+              </li>
+              <li>
+                <a href="#contact" class="nav-link">Contacts</a>
+              </li>
+            </ul>
+            <!-- Buttons -->
+            <a href="{{url_for('log_in')}}" class="btn  d-block mb-3">gal-xisaabtaada</a>
+            <a href="{{url_for('register')}}" class="btn btn-primary d-block">isdiiwaangeli</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <div class="background">
+
+
+      <div class="container mt-0" id="container">
+
+        <div class="row ">
+          <!-- Left Column -->
+          <div class="col-md-12 ">
+            <h1>Ma tahay qof xiisanaya ama jacel <br>culuumta
+               computerka?</h1>
+            <p>
+                Mana leedahay awood maskaxeed oo diyaar u ah xalinta dhibaha, markaas taaagan, iyo soo saarista wax cusub? 
+                Tech waxay diyaar kuula tahay cashiro, garabsiin, tababaro xiiso leh, iyo wado shaqayn dhamestiran. 
+                Haddii aad xiisanayso  inaad nagu soo biirto, fadlan halkaan iska diiwaan geli. Mahadsanid!
+            </p>
+            <a href="#signup" class="btn btn-primary btn-lg">Isku Diiwaan Geli Halkan</a>
+          </div>
+    
+          
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fw-bold">
+          Wax kabaro
+          <span class="text-primary">koorsooyinkayaga ugu caansan</span>
+        </h2>
+        <a href="#" class="btn btn-link text-decoration-none"
+          >fiiri dhamaan →</a
+        >
+      </div>
+      <div class="row mt-4">
+        <!-- Graphic Design -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-paint-brush course-icon"></i>
+            <div class="course-info">
+              <h6>Graphic Design</h6>
+              <p>Creative & Visual Skills</p>
+            </div>
+          </div>
+        </div>
+        <!-- Web Design -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-laptop-code course-icon"></i>
+            <div class="course-info">
+              <h6>Web Design</h6>
+              <p>Design Beautiful Websites</p>
+            </div>
+          </div>
+        </div>
+        <!-- Programming -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-code course-icon"></i>
+            <div class="course-info">
+              <h6>Programming</h6>
+              <p>Learn to Code</p>
+            </div>
+          </div>
+        </div>
+        <!-- Web Development -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-server course-icon"></i>
+            <div class="course-info">
+              <h6>Web Development</h6>
+              <p>Build Functional Websites</p>
+            </div>
+          </div>
+        </div>
+        <!-- Video Editing -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-video course-icon"></i>
+            <div class="course-info">
+              <h6>Video Editing</h6>
+              <p>Create Stunning Videos</p>
+            </div>
+          </div>
+        </div>
+        <!-- Database -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="course-card1">
+            <i class="fas fa-database course-icon"></i>
+            <div class="course-info">
+              <h6>Database</h6>
+              <p>Manage Data Efficiently</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end section -->
+    <div class="container">
+      <!-- WhatsApp Icon wrapped in a link -->
+      <a href="https://wa.me/614142187" target="_blank" class="whatsapp-icon">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <!-- end section -->
+    
+    <section id="why-choose-us" class="py-5">
+      <div class="container text-center">
+        <h2 class="mb-4" style="font-weight: bold; color: #007bff">
+          Maxaad noogu dooraneysaa?
+        </h2>
+        <div class="row d-flex justify-content-center align-items-center ">
+          <!-- Icon 1: Shahaadooyin -->
+          <div class="col-lg-4 col-md-4 mb-4  card2 g-10px">
+            <div class="icon-box mt-2">
+              <i class="fas fa-certificate fa-3x mb-3 text-danger"></i>
+              <h4 class="text-dark">Shahaadooyin</h4>
+              <p class="text-muted">
+                Waxaan bixinaa shahaadooyin rasmi ah oo aqoonsi leh, si ardaydu
+                ugu helaan aqoonsi iyo kalsooni xirfadaha ay bartaan.
+              </p>
+            </div>
+          </div>
+          <!-- Icon 2: Howl-karnimada Ardayda -->
+          <div class="col-lg-4 col-md-4 mb-4 card2">
+            <div class="icon-box">
+              <i class="fas fa-chalkboard-teacher fa-3x mb-3 text-danger"></i>
+              <h4 class="text-dark">Howl-karnimada Ardayda</h4>
+              <p class="text-muted">
+                Waxaan ku dhiirrigelineynaa ardayda inay qabtaan hawl badan oo
+                ay ka jawaabaan su'aalo adag, si ay u helaan faham dhab ah oo ku
+                saabsan mowduucyada ay barteen.
+              </p>
+            </div>
+          </div>
+          <!-- Icon 3: Su'aalo Badan oo La Xalliyo -->
+          <div class="col-lg-4 col-md-4 mb-4 card2">
+            <div class="icon-box">
+              <i class="fas fa-question-circle fa-3x mb-3 text-danger"></i>
+              <h4 class="text-dark">Su'aalo Badan oo La Xalliyo</h4>
+              <p class="text-muted">
+                Ardaydu waxay helayaan su'aalo badan oo dhab ah oo ay la kulmaan
+                inta ay baranayaan, waxaana loo diyaariyay si ay ugu tababaraan
+                xaaladaha dhabta ah.
+              </p>
+            </div>
+          </div>
+          <!-- Icon 4: Hawlaha iyo Imtixaanaadka Awoodda Leh -->
+          <div class="col-lg-4 col-md-4 mb-4 card2 active">
+            <div class="icon-box ">
+              <i class="fas fa-clipboard-check fa-3x mb-3 text-danger"></i>
+              <h4 class="text-white">Hawlaha iyo Imtixaanaadka Awoodda Leh</h4>
+              <p class="text-muted">
+                Waxaan bixinaa hawlo iyo imtixaano awood leh oo dheeraad ah si
+                ardaydu ay ugu tijaabiyaan aqoontooda iyo inay hagaajiyaan
+                xirfadaha ay bartaan.
+              </p>
+            </div>
+          </div>
+          <!-- tababar si beri kamaalin bare u noqon lahayn -->
+          <div class="col-lg-4 col-md-4 mb-4 card2">
+            <div class="icon-box">
+              <i class="fas fa-user-tie fa-3x mb-3 text-danger"></i>
+              <h4 class="text-dark">
+                Tababar si Berri ka maalin Bare ama Macalin Unoqon karaan
+              </h4>
+              <p class="text-muted">
+                waxaan ardayga u tababarnaa siduu qof kale wax u bari lahaa
+                waxaa loodiraa waxbaaris ,xalinta dhibaha taagan markaas
+                ,lajaanqaadida adduunka casriga ah
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 mb-4 card2">
+            <div class="icon-box">
+              <i class="fas fa-infinity fa-3x mb-3 text-danger"></i>
+              <h4 class="text-dark">Lifetime Access</h4>
+              <p class="text-muted">
+                ardayga hadii uu gato course kamid ah courseooyinka aan bixino
+                update walbo kudhaco coursekaas wuulasocon karaa asagna ubaahn
+                in uu lacag kale bixiyo
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-5" id="course">
+      <div class="container mt-5">
+        <h3 class="text-center mb-4" style="font-weight: bold; color: #007bff">
+          Raadi courseka aad rabto in aad gooni u hesho
+        </h3>
+        <!-- Search input field with a button -->
+        <div class="input-group">
+          <!-- Search input field -->
+          <input
+            type="text"
+            id="search-input-1"
+            class="form-control"
+            placeholder="Search for courses..."
+          />
+          <!-- Search icon inside the input field -->
+          <span class="input-group-text" id="search-bar-toggle-icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <!-- Category Buttons -->
+        <div class="d-flex justify-content-center mt-4">
+          <button class="category-button mx-2 btn">video editing</button>
+          <button class="category-button mx-2 btn">Database</button>
+          <button class="category-button mx-2 btn">Graphic design</button>
+          <button class="category-button mx-2 btn">Programing</button>
+          <button class="category-button mx-2 btn">web design</button>
+          <button class="category-button mx-2 btn">web development</button>
+        </div>
+
+        <!-- Web Development Courses -->
+        <div class="row">
+          <h2 class="mt-3 mb-3" style="color: #007bff; font-weight: bolder">
+            Web Development 
+          </h2>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="web development" data-course-id="1">
+            <div class="card">
+              <img class="img-fluid card-image" src="/static/img/4380747.jpg" />
+              <h5 class="card-title">
+                Html & Css  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>4.5 <i class="fa-solid fa-star"></i></span>
+              </h5>
+              <p class="card-text">
+                Baro aasaaska naqshadaynta websaydhada adigoo bartay HTML iyo CSS si aad u abuurto boggag si fiican loo habeeyey.
+              </p>
+              <div class="icons-container">
+                <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                <div><i class="fa-solid fa-money-check-dollar"></i><span> $6.00 </span></div>
+              </div>
+              <div class="btm-container mb-3">
+                
+                <button type="submit" class="btn mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;" id="course-detail-btn">faafaahin</button>
+                
+                <a href="#">
+                  <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </a>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web development"  data-course-id="2"
+          >
+            <div class="card">
+             
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/bootstrap.jpg"
+                />
+                <h5 class="card-title">Bootstrap</h5>
+                <p class="card-text">
+                  Naqshadeynta websaydhada jawaabta leh adigoo isticmaalaya Bootstrap.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i><span> $5.00</span></div>
+                </div>
+                <div class="btm-container mb-3">
+                 
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                  
+                 
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                 
+                </div>
+              
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web development" data-course-id="3"
+          >
+            <div class="card">
+             
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/js.jpg"
+                />
+                <h5 class="card-title">Javascript</h5>
+                <p class="card-text">
+                  Baro JavaScript laga bilaabo heerka ugu hooseeya oo abuur boggag web ah oo is dhexgal leh.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$6.00</span></div>
+                </div>
+                <div class="btm-container mb-3">
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9;box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+             
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web development" data-course-id="4"
+          >
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/image.png"
+                />
+                <h5 class="card-title">Python</h5>
+                <p class="card-text">
+                  Baro barnaamijka Python iyo sidee loo programiyo computerka 
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$6.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9;box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+              
+            </div>
+          </div>
+          <div 
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web development" data-course-id="5"
+          >
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/4380747.jpg"
+                />
+                <h5 class="card-title">Flask</h5>
+                <p class="card-text">
+                  Abuur server web ah oo firfircoon adigoo isticmaalaya Flask, oo ah framework fudud oo Python ah
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$8.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9;box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+              
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web development"  data-course-id="6"
+          >
+            <div class="card">
+             
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/mysql.jpg"
+                />
+                <h5 class="card-title">Mysql</h5>
+                <p class="card-text">
+                  Baro sida loo isticmaalo MySQL si aad u maamusho xogta, u qorto su'aalo, iyo u la falgasho xogta 
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$8.00</span></div>
+                </div>
+                <div class="btm-container mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9;box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                  
+                </div>
+             
+            </div>
+          </div>
+
+          <!-- Web Design Courses -->
+          <h2 class="mt-3 mb-3" style="color: #007bff; font-weight: bolder">
+            Web Design
+          </h2>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card"
+            data-category="web design"  data-course-id="7"
+          >
+            <div class="card">
+             
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/figma.jpg"
+                />
+                <h5 class="card-title">Figma</h5>
+                <p class="card-text">
+                  Baro sida loo abuuro interfaces isticmaalaha iyo naqshado web adigoo isticmaalaya Figma, aalad naqshadeyn oo caan ah
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i><span> $5.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+              
+            </div>
+          </div>
+
+          <!-- Graphic Design Courses -->
+          <h2 class="mt-3" style="color: #007bff; font-weight: bolder">
+            Graphic Design
+          </h2>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="Graphic design" data-course-id="8">
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/ps.jpg"
+                />
+                <h5 class="card-title">Adobe Photoshop</h5>
+                <p class="card-text">
+                  Baro sida loo isticmaalo Adobe Photoshop si loogu sameeyo naqshadaha garaafyada iyo sawir gacmeedka.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$4.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9;box-shadow: none !important;">faafaahin</button>
+                  
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                  
+                </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="Graphic design" data-course-id="9">
+            <div class="card">
+             
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/ai.jpg"
+                />
+                <h5 class="card-title">Adobe Illustrator</h5>
+                <p class="card-text">
+                  Baro sida loo sameeyo garaafyada iyo sawir-qaadista iyadoo la isticmaalayo Adobe Illustrator.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$4.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100"style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                  
+                </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-3 course_card" data-category="Graphic design" data-course-id="10">
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/id.jpg"
+                />
+                <h5 class="card-title">Adobe InDesign</h5>
+                <p class="card-text">
+                  Baro sida loo isticmaalo Adobe InDesign si loo abuuro lay-out professional ah, buugaag iyo daabacadaha
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$4.00</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+            </div>
+          </div>
+
+          <!-- Programming Courses -->
+          <h2 class="mt-3 mb-3" style="color: #007bff; font-weight: bolder">
+            Programming
+          </h2>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="Programing" data-course-id="11">
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/java.jpg"
+                />
+                <h5 class="card-title">Java</h5>
+                <p class="card-text">
+                  Dive into Java programming, learn the basics and create your
+                  first object-oriented applications.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$20</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="Programing" data-course-id="12">
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/js.jpg"
+                />
+                <h5 class="card-title">Javascript</h5>
+                <p class="card-text">
+                  Learn the fundamentals of C programming, one of the most
+                  popular programming languages in the world.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$20</span></div>
+                </div>
+                <div class="btm-container mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+      
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                 
+                </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 course_card" data-category="Programing" data-course-id="13">
+            <div class="card">
+              
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/image.png"
+                />
+                <h5 class="card-title">Python</h5>
+                <p class="card-text">
+                  Learn Python programming from scratch, covering topics like
+                  variables, loops, and more advanced topics such as machine
+                  learning.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i><span> 5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i><span></span> $20</span></div>
+                </div>
+                <div class="btm-container mb-3">
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                 
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Database Courses -->
+          <h2 class="mt-3 mb-3" style="color: #007bff; font-weight: bolder">
+            Database
+          </h2>
+          <div class="col-lg-4 col-md-6 col-sm-12  mt-3 mb-3 course_card" data-category="Database" data-course-id="14">
+            <div class="card">
+                <img
+                  class="img-fluid card-image"
+                  src="/static/img/sql.jpg"
+                />
+                <h5 class="card-title">SQL</h5>
+                <p class="card-text">
+                  Learn the basics of SQL and how to manipulate and query
+                  databases to retrieve and analyze data.
+                </p>
+                <div class="icons-container">
+                  <div><i class="fa-solid fa-clock"></i> <span>5 hour</span></div>
+                  <div><i class="fa-solid fa-user-plus"></i><span>10+students</span></div>
+                  <div><i class="fa-solid fa-money-check-dollar"></i> <span>$20</span></div>
+                </div>
+                <div class="btm-container  mb-3">
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="background-color:  #d2e2f7; color: #1e6fd9; box-shadow: none !important;">faafaahin</button>
+                  
+                    <button class="btn btn-primary mx-3 w-100" style="box-shadow: none !important;">isqor</button>
+                 
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="contact" class="py-5">
+      <div class="container">
+          <h4 class="text-center mb-4">Nagala Soo Xiriir</h4>
+          <p class="text-center mb-5">Nagala soo xiriir email iyo telefoon hoos ku qoran. Mahadsanid.</p>
+          <div class="row">
+              <!-- Contact Form Section -->
+              <div class="col-lg-6 mb-5">
+                  <div class="contact-section">
+                      <h5 class="mb-4">Fariin noogu soo dir</h5>
+                      <form id="contact-form" method="post">
+                        <div class="form-group mb-3">
+                              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                          </div>
+                          <div class="form-group mb-3">
+                              <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                          </div>
+                          <div class="form-group mb-3">
+                              <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                          </div>
+                          <div class="form-group mb-3">
+                              <textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Send Message</button>
+                      </form>
+                      <div id="response-message" class="mt-3"></div>
+                  </div>
+              </div>
+
+              <!-- Contact Details Section -->
+              <div class="col-lg-6">
+                  <div>
+                      <h5 class="mb-4 mt-3">Faahfaahinta Xiriirka</h5>
+                      <p>Baraha bulshada, telefoon, iyo email – dhammaan waxaad noogu soo xiriiri kartaa haddii aad u baahato. Mahadsanid.</p>
+                      <div class="row">
+                          <!-- Address -->
+                          <div class="col-md-6 mb-3">
+                              <div class="contact">
+                                  <i class="fas fa-map-marker-alt course-icon"></i>
+                                  <div class="contact-info">
+                                      <h6>Cinwaanka</h6>
+                                      <p>Muqdisho, Soomaaliya</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- Phone -->
+                          <div class="col-md-6 mb-3">
+                              <div class="contact">
+                                  <i class="fas fa-phone course-icon"></i>
+                                  <div class="contact-info">
+                                      <h6>Telefoon</h6>
+                                      <p>614142187</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- Email -->
+                          <div class="col-md-6 mb-3">
+                              <div class="contact">
+                                  <i class="fas fa-envelope course-icon"></i>
+                                  <div class="contact-info">
+                                      <h6>Email</h6>
+                                      <p>albasawie@gmail.com</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- Working Hours -->
+                          <div class="col-md-6 mb-3">
+                              <div class="contact">
+                                  <i class="fas fa-clock course-icon"></i>
+                                  <div class="contact-info">
+                                      <h6>La Heli Karo</h6>
+                                      <p>24/7</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+    <section id="footer" class="py-5 bg-light text-dark">
+      <div class="container">
+        <!-- Links, Contact & Newsletter Section -->
+        <div class="row">
+          <!-- Links Section -->
+          <div class="col-md-4 mb-4">
+            <h2 class="mt-3 mb-3">Lifaaq</h2>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#course">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contacts</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Contact Section -->
+          <div class="col-md-4 mb-4">
+            <h3 class="mt-3 mb-3">Nala Soo Xiriir</h3>
+            <p><i class="fas fa-envelope me-2"></i> info@alpasrawie.com</p>
+            <p><i class="fas fa-phone me-2"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+252 61 414 2187</p>
+            <p><i class="fas fa-map-marker-alt me-2"></i> Mogadishu, Somalia</p>
+          </div>
+          <!-- Newsletter Section -->
+          <div class="col-md-4 mb-4">
+            <h3  class="mt-3 mb-3">Nala Soco</h3>
+            <p>
+              Ku qor email-kaaga si aad u hesho xogaha iyo macluumaad cusub oo
+              waxbarasho.
+            </p>
+            <form class="input-group">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Email-kaaga"
+                aria-label="Email-kaaga"
+                required
+              />
+              <button class="btn btn-primary" type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <hr />
+        <!-- Social Media and Footer Bottom -->
+        <div class="row">
+          <!-- Social Media Section -->
+          <div class="col-md-6">
+            <h3>Social Media Accounts</h3>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center justify-content-md-end">
+            <div class="social-icons">
+              <a href="#" class="text-dark me-3"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-dark me-3"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-dark me-3"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-dark"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <!-- Copyright -->
+        <p class="text-center mt-3">
+          &copy; 2025 CaawiyeTech. Dhammaan xuquuqda waa la ilaaliyaa.
+        </p>
+      </div>
+    </section>
+
+    <script>
+     document.addEventListener("DOMContentLoaded", function () {
+  const navbar = document.querySelector(".navbar"); // Select the navbar
+
+  function toggleStickyNavbar() {
+    if (window.scrollY > 250) {
+      navbar.classList.add("sticky"); // Add sticky class when user starts scrolling
+    } else {
+      navbar.classList.remove("sticky"); // Remove sticky class when at the top
+    }
+  }
+
+  window.addEventListener("scroll", toggleStickyNavbar); // Listen to the scroll event
+});
+    </script>
+
+    <script>
+      // Search Functionality
+      document
+        .getElementById("search-input-1")
+        .addEventListener("input", function () {
+          let searchTerm = this.value.toLowerCase();
+          let courseCards = document.querySelectorAll(".course_card");
+          let courseTitles = document.querySelectorAll("h2"); // Select all h2 titles
+
+          courseCards.forEach(function (card) {
+            let title = card
+              .querySelector(".card-title")
+              .textContent.toLowerCase();
+            let description = card
+              .querySelector(".card-text")
+              .textContent.toLowerCase();
+
+            if (
+              title.includes(searchTerm) ||
+              description.includes(searchTerm)
+            ) {
+              card.style.display = "block"; // Show card
+              // Show the related h2 title
+              let categoryTitle = card.getAttribute("data-category");
+              document
+                .querySelectorAll(`h2[data-category="${categoryTitle}"]`)
+                .forEach(function (h2) {
+                  h2.style.display = "block";
+                });
+            } else {
+              
+              card.style.display = "none"; // Hide card
+            }
+          });
+
+          // Hide all h2 titles if no cards match the search
+          courseTitles.forEach(function (h2) {
+            h2.style.display = "none";
+          });
+
+          // Show h2 titles for the visible course cards
+          let visibleCards = document.querySelectorAll(
+            ".course_card[style*='display: block']"
+          );
+          visibleCards.forEach(function (card) {
+            let categoryTitle = card.getAttribute("data-category");
+            document
+              .querySelectorAll(`h2[data-category="${categoryTitle}"]`)
+              .forEach(function (h2) {
+                h2.style.display = "block";
+              });
+          });
+        });
+
+      // Category Filtering
+
+      // Category Filtering (Specific Categories)
+      // Category Filtering (Specific Categories)
+      const categoryButtons = document.querySelectorAll(".category-button");
+
+      categoryButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          let selectedCategory = this.textContent.toLowerCase();
+          let courseCards = document.querySelectorAll(".course_card");
+          let courseTitles = document.querySelectorAll("h2"); // Select all h2 titles
+
+          // Hide all course cards first
+          courseCards.forEach(function (card) {
+            card.style.display = "none";
+          });
+
+          // Hide all h2 titles first
+          courseTitles.forEach(function (h2) {
+            h2.style.display = "none";
+          });
+
+          // Show only the cards and h2 titles that match the selected category
+          courseCards.forEach(function (card) {
+            let cardCategory = card.getAttribute("data-category");
+
+            if (
+              selectedCategory === "all" ||
+              cardCategory.toLowerCase() === selectedCategory
+            ) {
+              card.style.display = "block";
+              // Show the related h2 title for the category
+              document
+                .querySelectorAll(`h2[data-category="${cardCategory}"]`)
+                .forEach(function (h2) {
+                  h2.style.display = "block";
+                });
+            }
+          });
+        });
+      });
+    </script>
+
+
+
+
+       
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="/static/js/course.js"></script>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- MDBootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  const body = document.body;
+
+  // Check localStorage for theme preference
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-mode");
+    themeIcon.classList.remove("fa-moon");
+    themeIcon.classList.add("fa-sun");
+  } else {
+    body.classList.remove("dark-mode");
+    themeIcon.classList.remove("fa-sun");
+    themeIcon.classList.add("fa-moon");
+  }
+
+  // Toggle theme on button click
+  themeToggle.addEventListener("click", function () {
+    body.classList.toggle("dark-mode");
+    if (body.classList.contains("dark-mode")) {
+      themeIcon.classList.remove("fa-moon");
+      themeIcon.classList.add("fa-sun");
+      localStorage.setItem("theme", "dark");
+    } else {
+      themeIcon.classList.remove("fa-sun");
+      themeIcon.classList.add("fa-moon");
+      localStorage.setItem("theme", "light");
+    }
+  });
+});
+    </script>
+
+    <script>
+     document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch('/submit_form', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        let messageBox = document.getElementById('response-message');
+        messageBox.innerHTML = `<div class="alert alert-${data.status === 'success' ? 'success' : 'danger'}">${data.message}</div>`;
+        if (data.status === 'success') {
+            document.getElementById('contact-form').reset();
+        }
+    })
+    .catch(error => {
+        document.getElementById('response-message').innerHTML = `<div class="alert alert-danger">Cilad ayaa dhacday: ${error}</div>`;
+    });
+});
+
+    </script>
+<!-- MDBootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
+  </body>
+</html>

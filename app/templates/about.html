@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caawiye Tech</title>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.css" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 26px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        li i {
+            color: #1abc9c;
+            margin-right: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .lead {
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #2080e7;
+        }
+
+        .fa {
+            margin-right: 15px;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 0px;
+        }
+
+        footer a {
+            color: rgb(30, 111, 217);
+            text-decoration: none;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .h1, h2, h3 {
+                font-size: 20px;
+            }
+
+            .lead {
+                font-size: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Default style for divs */
+        .fade-div {
+            opacity: 0;
+            transform: translateY(0);
+            transition: opacity 0.9s ease, transform 0.5s ease;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.9s forwards;
+        }
+
+        .fade-up {
+            animation: fadeUp 0.9s forwards;
+        }
+
+        .fade-down {
+            animation: fadeDown 0.9s forwards;
+        }
+
+        .slide-right {
+            animation: slideRight 0.9s forwards;
+        }
+
+        .slide-left {
+            animation: slideLeft 0.9s forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- First Section (Fade-in) -->
+        <div class="text-center mt-5 fade-div fade-in">
+            <img src="/static/img/Caawiye_profile-removebg-preview.png" alt="Caawiye Tech" class="img-fluid" width="200px">
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-center fade-div fade-up">Asalaamu Calaykum Waraxmatullaahi Wabarakaatuh</h1>
+
+        <!-- Introduction -->
+        <p class="lead text-center fade-div fade-down">Magacaygu waa Xasan Xuseen, waxaan ahay asaasaha <strong>CaawiyeTech</strong> madal waxbarasho fogaan-dersi ah (online) oo lagu barto culuumta kala duwan ee technology. Qof kasta oo raba inuu xirfadaha casriga ah ee technology ku soo biiro waa qasab inuu si joogto ah u barto si uu ula jaanqaado isbeddelka dunida casriga ah.</p>
+
+        <!-- Why Choose Us Section -->
+        <div class="mt-5 fade-div slide-right">
+            <h2 class="text-center">Waa maxay sababta aad uga faa'iidaysan karto Caawiye Tech?</h2>
+            <ul>
+                <li>
+                    <i class="fas fa-sync-alt fa-2x"></i>
+                    <div>
+                        <h4><strong>1. Technology Waxaa Kudhaca Mar Walba Isbeddel:</strong></h4>
+                        <p>Si aad ula qabsato isbeddelada joogtada ah ee technology, waa muhiim inaad noqoto qof si joogto ah u baran kara xirfadaha cusub.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                    <div>
+                        <h4><strong>2. Koorsooyin Ku Saleysan <em>Itus Iyo Itaabsii</em>:</strong></h4>
+                        <p>Koorsooyinka halkan laga bixiyo waxaa loo diyaariyay qaab ku saleysan <em>itus iyo itaabsii</em> si aad u aragto sida wax loo sameeyo oo aad khibrad dhab ah u hesho.</p>
+                        <ul>
+                            <li>Waxaad baran doontaa <strong>sida cilmi-baaris loo sameeyo</strong></li>
+                            <li>Kaliya ma ahan inaad koorso iibsato; waxaa muhiim ah inaad khibrad shaqo ka hesho tababarrada aan bixinno.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-hands-helping fa-2x"></i>
+                    <div>
+                        <h4><strong>3. Caawinaad Joogto Ah:</strong></h4>
+                        <p>Waxaan diyaar kuula nahay mar walba iyo meelkasta si aan kuu xallinno caqabadaha ku soo wajaha. Haddii aad caawimaad u baahan tahay, ha ka labalabeyn inaad nala soo xiriirto.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Telegram Group Section -->
+        <div class="mt-5 fade-div fade-up">
+            <h3 class="text-center"><i class="fab fa-telegram-plane"></i> Telegram Group Gaar Ah</h3>
+            <p class="text-center">Waxaan u diyaarinay ardayda koorsooyinka iibsata <strong>channel Telegram</strong> gaar ah. Halkaas waxaad kula xiriiri doontaa ardayda kale, waadna wada shaqeyn doontaan sidii hal <strong>team</strong> oo kale tan kale kudarso macalinka koorsada bixinayaa iyo admin way kujiraan oo waxii kuuu soo adkaado waad soowaydiin kartaa.</p>
+        </div>
+
+        <!-- Real-Life Projects Section -->
+        <div class="mt-5 fade-div slide-left">
+            <h3 class="text-center"><i class="fas fa-project-diagram"></i> Real-Life Projects</h3>
+            <p class="text-center">Mashaariic dhab ah oo ay ka shaqeyn karaan—kuwaas oo si toos ah looga isticmaali karo suuqa.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Caawiye Tech. All rights reserved. <a href="https://caawiye.tech">Visit our website</a></p>
+    </footer>
+
+    <script>
+        const divsToAnimate = document.querySelectorAll('.fade-div');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(entry.target.classList[1]); // Add the animation class
+                    observer.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        }, { threshold: 4 }); // Trigger animation earlier
+
+        divsToAnimate.forEach(div => {
+            observer.observe(div); // Observe each div
+        });
+    </script>
+
+</body>
+</html>

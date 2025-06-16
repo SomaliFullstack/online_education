@@ -1,0 +1,28 @@
+si aad configurationka u timad waxa ubaahantahy 
+marka enable tan xigta configure terminal kadib howsha waad haysaa 
+Switch(config)#
+ banner motd # Welcome to this switch! Unauthorized access is prohibited. #
+
+
+suaasha labad 
+
+Switch(config)# line console 0
+Switch(config-line)# password cisco123
+Switch(config-line)# login
+Switch(config-line)# exit
+
+xasuusnow : login, password-kana ma shaqeynayo haddii login laga tago.
+
+ suaasha 3aad
+
+Switch(config)# hostname designer
+Switch(config)# ip domain-name designer.com
+Switch(config)# crypto key generate rsa
+  How many bits in the modulus [512]: 1024
+Switch(config)# username admin secret 123
+Switch(config)# line vty 0 4
+Switch(config-line)# transport input ssh
+Switch(config-line)# login local
+Switch(config-line)# exit
+Switch(config)# ip ssh version 2
+

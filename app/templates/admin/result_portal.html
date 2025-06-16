@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Exam Management System</h2>
+
+    <!-- Form-ka darajooyinka -->
+    <div class="card shadow p-4">
+        <h4 class="mb-3">Add Marks</h4>
+        <form action="{{ url_for('add_marks') }}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Select Student</label>
+                <select id="studentSelect" name="student" class="form-select" required>
+                    <option value="">-- Select a Student --</option>
+                    {% for student in students %}
+                        <option value="{{ student[0] }}">{{ student[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Select Course</label>
+                <select id="courseSelect" name="course" class="form-select" required>
+                    <option value="">-- Select a Course --</option>
+                    {% for course in courses %}
+                        <option value="{{ course[0] }}">{{ course[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Marks</label>
+                <input type="number" name="marks" class="form-control" min="0" max="100" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Marks</button>
+        </form>
+    </div>
+
+    <!-- Link to Results -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('calculate') }}" class="btn btn-success">View Results</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JavaScript -->
+<script>
+    // Fetch and Populate Courses for Selected Student
+    async function loadCoursesByStudent(student_id) {
+        try {
+            const res = await fetch(`/api/get-courses-by-student/${student_id}`);
+            if (!res.ok) throw new Error('Failed to fetch courses');
+            const courses = await res.json();
+            const courseSelect = document.getElementById('courseSelect');
+            courseSelect.innerHTML = '<option value="">-- Select a Course --</option>';
+            if (courses.length > 0) {
+                courses.forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course.course_id;
+                    option.textContent = course.course_name;
+                    courseSelect.appendChild(option);
+                });
+            } else {
+                courseSelect.innerHTML = '<option value="">No courses purchased by this student.</option>';
+            }
+        } catch (error) {
+            console.error('Error loading courses:', error);
+        }
+    }
+
+    // Handle Student Selection
+    document.getElementById('studentSelect').addEventListener('change', (e) => {
+        const student_id = e.target.value;
+        if (student_id) {
+            loadCoursesByStudent(student_id);
+        } else {
+            document.getElementById('courseSelect').innerHTML = '<option value="">-- Select a Course --</option>';
+        }
+    });
+</script>
+
+{% endblock %}

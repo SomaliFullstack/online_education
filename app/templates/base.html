@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+    <!-- Preconnect links for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Modern Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Modern Color Scheme with Your Brand Colors */
+        :root {
+            /* Light Theme */
+            --bg-color: #f8f9fa;
+            --text-color: #2d3748;
+            --navbar-bg: #ffffff;
+            --link-color: #d97904; /* Your brand orange */
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #2d3748;
+            --sidebar-hover-bg: rgba(217, 121, 4, 0.1); /* Light orange */
+            --footer-bg: #020873; /* Your dark blue */
+            --footer-text: #ffffff;
+            --card-bg: #ffffff;
+            --card-text: #2d3748;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-color: #1a202c;
+            --text-color: #f7fafc;
+            --navbar-bg: #2d3748;
+            --link-color: #e8af68; /* Your light orange */
+            --sidebar-bg: #2d3748;
+            --sidebar-text: #f7fafc;
+            --sidebar-hover-bg: rgba(232, 175, 104, 0.1);
+            --footer-bg: #35398f; /* Your medium blue */
+            --footer-text: #f7fafc;
+            --card-bg: #2d3748;
+            --card-text: #f7fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        /* Modern Sidebar */
+         /* Modern Sidebar - NO SCROLLING */
+         .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Disable all scrolling */
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            text-align: center;
+            height: 80px;
+            color: var(--link-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar li {
+            flex: 1;
+            max-height: 50px;
+            display: flex;
+        }
+
+        .sidebar li a {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            margin: 2px 10px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .sidebar li a:hover {
+            background-color: var(--sidebar-hover-bg);
+            color: var(--link-color);
+        }
+
+        .sidebar li a i {
+            width: 24px;
+            text-align: center;
+            margin-right: 15px;
+            font-size: 1.1rem;
+            color: var(--link-color);
+        }
+
+        .sidebar-footer {
+            padding: 15px;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+
+        .btn_logout {
+            background-color: var(--link-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn_logout:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            background-color: var(--navbar-bg);
+            box-shadow: none !important;
+            padding: 15px 25px;
+            /* same heigh as header of sidebar */
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+        }
+
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #sidebar-toggle, #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* soft light shadow and oft border */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+            font-size: 1.25rem;
+            cursor: pointer;
+           
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        #sidebar-toggle:hover, #theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 0;
+            margin-left: 280px;
+            padding: 90px 30px 30px;
+            min-height: calc(100vh - 90px);
+            transition: var(--transition);
+        }
+
+        /* Responsive Design - Mobile First */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+            
+            .main-content, footer {
+                margin-left: 0;
+            }
+            
+            .navbar {
+                left: 0;
+                width: 100%;
+            }
+            
+            #sidebar-toggle {
+                display: block;
+            }
+
+            /* Ensure logout button is always visible */
+            .sidebar-footer {
+                position: sticky;
+                bottom: 0;
+                background-color: var(--sidebar-bg);
+                z-index: 1;
+            }
+            
+            .sidebar-nav {
+                padding-bottom: 80px; /* Space for logout button */
+            }
+        }
+
+        /* For medium screens (tablets) */
+        @media (min-width: 576px) and (max-width: 992px) {
+            .sidebar {
+                width: 280px;
+                padding: 0;
+                z-index: 1000;
+            }
+            
+            .sidebar-header {
+                
+                padding: 6px;
+            }
+            
+            .sidebar-nav {
+                padding: 0;
+            }
+            
+            .sidebar ul li a {
+                padding: 6px;
+            }
+            
+            .sidebar-footer {
+                padding: 10px;
+            }
+            /* theme toogle */
+            .theme-toggle-container {
+                margin-left: auto;
+                gap: 20px;
+            }
+            
+            /* icon need be get space from left */
+            #theme-toggle {
+                margin-left: 4%;
+            }
+            
+            
+            .main-content, footer {
+                margin-left: 0;
+                z-index: 0;
+            }
+            
+            .sidebar.visible + .main-content,
+            .sidebar.visible + footer {
+                margin-left: 0px;
+            }
+        }
+
+        /* For large screens (laptops and desktops) */
+        @media (min-width: 992px) {
+            .navbar {
+                left: 280px;
+                right: 0;
+                width: auto;
+                padding: 15px 30px;
+            }
+            
+            .main-content {
+                margin-left: 280px;
+                padding-top: 80px;
+            }
+            
+            footer {
+                margin-left: 280px;
+            }
+            
+            .logo-container {
+                margin-right: auto;
+            }
+            
+            .theme-toggle-container {
+                margin-left: auto;
+                gap: 20px;
+            }
+            
+            #sidebar-toggle {
+                display: none;
+            }
+        }
+        /* small screens */
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                padding: 0;
+            }
+            
+            .sidebar-header {
+                padding: 8px;
+            }
+            
+            .sidebar-nav {
+                padding: 0;
+            }
+            
+            .sidebar ul li a {
+                padding: 6px;
+            }
+            
+            .sidebar-footer {
+                padding: 10px;
+            }
+        }
+        /* Fix for extra-wide screens */
+        @media (min-width: 1600px) {
+            .navbar {
+                padding: 15px calc((100% - 1400px) / 2);
+                padding-left: calc(280px + (100% - 1400px) / 2);
+            }
+        }
+
+        /* Animation for sidebar */
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .sidebar.visible {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        /* Close button */
+        #sidebar-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border: none;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Boxes */
+        .content-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .box {
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .box.blue {
+            background-color: #35398f;
+            color: white;
+        }
+
+        .box.orange {
+            background-color: #d97904;
+            color: white;
+        }
+
+        .box.purple {
+            background-color: #676bab;
+            color: white;
+        }
+
+        .box.red {
+            background-color: #e19436;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <button id="sidebar-close" class="d-lg-none">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-header">
+            <h1 class="logo-text">CaawiyeTech</h1>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="list-unstyled">
+                <li>
+                    <a href="{{url_for('admin_dashboard')}}">
+                        <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('admin_student')}}">
+                        <i class="fas fa-user-graduate"></i> <span>Students</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('admin_course')}}">
+                        <i class="fas fa-book"></i><span>Courses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('admin_payment')}}">
+                        <i class="fas fa-credit-card"></i> <span>Payments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('send_assignment')}}">
+                        <i class="fas fa-tasks"></i> <span>Assignments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('result_portal')}}">
+                        <i class="fas fa-graduation-cap"></i> <span>Exams</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('admin_notification')}}">
+                        <i class="fas fa-bell"></i> <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('create_event_')}}">
+                        <i class="fas fa-calendar-plus"></i> <span>Events</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="{{url_for('logout')}}" class="btn_logout">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <nav class="navbar" id="navbar">
+            <div class="logo-container">
+                <img src="/static/img/Caawiye_profile-removebg-preview.png" alt="CaawiyeTech Logo">
+            </div>
+
+            <div class="theme-toggle-container">
+                <button id="theme-toggle">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <button id="sidebar-toggle" class="d-lg-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>© 2024 CaawiyeTech. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const navbar = document.getElementById('navbar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarClose = document.getElementById('sidebar-close');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+
+            // Mobile check
+            const isMobile = () => window.innerWidth <= 992;
+
+            // Sidebar toggle
+            const toggleSidebar = () => {
+                sidebar.classList.toggle('visible');
+                document.body.style.overflow = sidebar.classList.contains('visible') ? 'hidden' : '';
+            };
+
+            // Theme toggle
+            const toggleTheme = () => {
+                const isDark = document.body.getAttribute('data-theme') === 'dark';
+                document.body.setAttribute('data-theme', isDark ? '' : 'dark');
+                themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            };
+
+            // Load theme
+            const loadTheme = () => {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.body.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : '');
+                themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            };
+
+            // Event listeners
+            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarClose.addEventListener('click', toggleSidebar);
+            themeToggle.addEventListener('click', toggleTheme);
+            window.addEventListener('resize', () => {
+                if (!isMobile() && sidebar.classList.contains('visible')) {
+                    sidebar.classList.remove('visible');
+                }
+            });
+
+            // Initialize
+            loadTheme();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+      rel="stylesheet"
+    />
+   <style>
+    body {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      background-size: cover;
+      background-position: center;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 550px;
+      padding: 20px;
+      margin-top: 3rem;
+
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .form-outline {
+      position: relative;
+    }
+
+    .form-outline input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-outline input:focus {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .form-label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+
+      border: none;
+      color: #cbcbcb;
+    }
+
+    .btn-primary:hover {
+
+      transform: scale(1.05);
+    }
+   </style>
+  </head>
+  <body>
+    <div class="container">
+
+
+      <form>
+        <div class="text-center mb-4">
+          <img
+            class="img-fluid rounded-circle"
+            src="/static/img/4380747.jpg"
+            alt="Logo"
+            width="80"
+          />
+          <h4 class="mt-2">Welcome back</h4>
+          <p>Sign in to access your dashboard, settings, and projects.</p>
+        </div>
+        <div class="alert alert-danger " id="error_msg" role="alert" style="display:none"></div>
+        <div class="alert alert-success " id="success_msg" role="alert" style="display:none"></div>
+
+        <div class="form-outline mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+        </div>
+
+        <div class="form-outline mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" />
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="getDate(event)">
+          Login
+          <i class="fas fa-arrow-right ms-2"></i>
+        </button>
+      </form>
+
+      <div class="text-center mt-3 mb-6">
+        <p>
+          No account?
+          <a href="{{url_for('register')}}" class="text-warning">Create an account</a>
+        </p>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+    ></script>
+      <script src="/static/js/login.js"></script>
+  </body>
+</html>
+
+
+

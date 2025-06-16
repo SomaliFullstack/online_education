@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- MDBootstrap CSS -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+        rel="stylesheet"
+    />
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1, h3 {
+            color: #333;
+            font-weight: 600;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Card Styling */
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            color: #007bff;
+            padding: 20px;
+
+            box-shadow: none !important;
+        }
+
+        .card-body {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Custom Color Scheme */
+        .bg-primary {
+            background-color: #007bff !important;
+        }
+
+        .list-group-item {
+            background-color: #f8f9fa;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .card-body ul {
+            padding-left: 20px;
+        }
+
+        /* Headings and Titles */
+        #course-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007bff;
+            text-align: center;
+        }
+
+        #course-description {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Button Style */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="course-content" class="container my-5">
+        <div class="card">
+            <div class="card-header  ">
+                <h1 id="course-title" class="mb-0"></h1>
+            </div>
+            <div class="card-body">
+                <p id="course-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="mt-4">Topics:</h3>
+                <ul id="course-topics" class="list-group mb-4"></ul>
+                <h3>Videos:</h3>
+                <ul id="course-videos" class="list-group"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/course.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Notification{% endblock %}
+
+{% block content %}
+    <style>
+        .form-select, .form-control {
+            color: #000; /* Black text color */
+            background-color: #fff; /* White background */
+        }
+
+        .form-select option {
+            color: #000; /* Black text color */
+            background-color: #fff; /* White background */
+        }
+
+        .btn-view-course {
+            margin-left: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem; /* Add spacing between form fields */
+        }
+
+        .form-group label {
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 0.5rem; /* Add spacing below labels */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Course Manager</h1>
+
+        <!-- Select Course and Add Topic Section -->
+        <div class="card my-4">
+            <div class="card-body">
+                <h3>Select Course</h3>
+                <div class="d-flex align-items-center mb-4">
+                    <select id="courseSelect" class="form-select">
+                        <option value="">-- Select a Course --</option>
+                    </select>
+                    
+                </div>
+
+                <h4>Add Topic</h4>
+                <form id="topicForm">
+                    <div class="form-group">
+                        <label for="chapterName">Chapter Name</label>
+                        <input type="text" id="chapterName" class="form-control" placeholder="Enter Chapter Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="topicName">Topic Name</label>
+                        <input type="text" id="topicName" class="form-control" placeholder="Enter Topic Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="videoUrl">Video URL</label>
+                        <input type="url" id="videoUrl" class="form-control" placeholder="Enter Video URL" required />
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-block">
+                        <i class="fas fa-plus"></i> Add Topic
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Show Topics Section -->
+        <div class="card my-4">
+            <div class="card-body">
+                <h3>Topics</h3>
+                <ul id="topicsList" class="list-group">
+                    <li class="list-group-item text-center">No topics available. Select a course to view topics.</li>
+                </ul>
+                <button id="submitAllBtn" class="btn btn-success btn-block mt-3" disabled>
+                    <i class="fas fa-upload"></i> Submit All Topics
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+       // Fetch and Populate Courses
+async function loadCourses() {
+    try {
+        const res = await fetch('/api/get-courses');
+        if (!res.ok) throw new Error('Failed to fetch courses');
+        const courses = await res.json();
+        console.log('Fetched courses:', courses); // Debugging
+
+        const courseSelect = document.getElementById('courseSelect');
+        courseSelect.innerHTML = '<option value="">-- Select a Course --</option>';
+
+        courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course.course_id;  // Ensure this matches the backend response
+            option.textContent = course.course_name;  // Ensure this matches the backend response
+            courseSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading courses:', error);
+        alert('Failed to load courses. Please try again.');
+    }
+}
+
+// Add Topic
+document.getElementById('topicForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const course_id = document.getElementById('courseSelect').value;
+    const chapter_name = document.getElementById('chapterName').value.trim();
+    const topic_name = document.getElementById('topicName').value.trim();
+    const video_url = document.getElementById('videoUrl').value.trim();
+
+    if (!course_id || !chapter_name || !topic_name || !video_url) {
+        alert('All fields are required!');
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/add-topic', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ course_id, chapter_name, topic_name, video_url }),
+        });
+
+        if (!res.ok) throw new Error('Failed to add topic');
+        const result = await res.json();
+        alert(result.message);  // Show success message
+        loadTopics(course_id);  // Refresh the topic list
+        e.target.reset();  // Clear the form
+    } catch (error) {
+        console.error('Error adding topic:', error);
+        alert('Failed to add topic. Please try again.');
+    }
+});
+
+// Load Topics for Selected Course
+async function loadTopics(course_id) {
+    try {
+        console.log(`Fetching topics for course ID: ${course_id}`); // Debugging
+        const res = await fetch(`/api/get-topics/${course_id}`);
+        if (!res.ok) throw new Error('Failed to fetch topics');
+        const topics = await res.json();
+        console.log('Fetched topics:', topics); // Debugging
+
+        const topicsList = document.getElementById('topicsList');
+        topicsList.innerHTML = '';
+
+        if (topics.length > 0) {
+            topics.forEach(topic => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.innerHTML = `
+                    <strong>${topic.topic_name}:</strong>
+                    <a href="${topic.video_url}" target="_blank">Watch Video</a>
+                `;
+                topicsList.appendChild(listItem);
+            });
+            document.getElementById('submitAllBtn').disabled = false; // Enable "Submit All" button
+        } else {
+            topicsList.innerHTML = '<li class="list-group-item text-center">No topics available for this course.</li>';
+            document.getElementById('submitAllBtn').disabled = true; // Disable "Submit All" button
+        }
+    } catch (error) {
+        console.error('Error loading topics:', error);
+        alert('Failed to load topics. Please try again.');
+    }
+}
+
+// Handle Course Change
+document.getElementById('courseSelect').addEventListener('change', (e) => {
+    const course_id = e.target.value;
+    if (course_id) {
+        loadTopics(course_id);  // Load topics for the selected course
+    } else {
+        // Clear the topics list if no course is selected
+        const topicsList = document.getElementById('topicsList');
+        topicsList.innerHTML = '<li class="list-group-item text-center">No topics available. Select a course to view topics.</li>';
+        document.getElementById('submitAllBtn').disabled = true; // Disable "Submit All" button
+    }
+});
+
+// Handle "Submit All" Button Click
+document.getElementById('submitAllBtn').addEventListener('click', async () => {
+    const course_id = document.getElementById('courseSelect').value;
+    if (course_id) {
+        try {
+            const res = await fetch(`/api/submit-all-topics/${course_id}`, {
+                method: 'POST',
+            });
+            if (!res.ok) throw new Error('Failed to submit all topics');
+            const result = await res.json();
+            alert(result.message);  // Show success message
+        } catch (error) {
+            console.error('Error submitting all topics:', error);
+            alert('Failed to submit all topics. Please try again.');
+        }
+    }
+});
+
+// Initial Load
+loadCourses();
+
+        
+         
+    </script>
+{% endblock %}

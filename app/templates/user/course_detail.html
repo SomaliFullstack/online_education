@@ -1,0 +1,218 @@
+{% extends "student_base.html" %}
+{% block title %}Course Management{% endblock %}
+{% block content %}
+<style>
+.course-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4169E1;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+.back-button:hover{
+    background-color: #4369E1;
+    color:white;
+}
+
+.course-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.progress-section {
+    margin-bottom: 3rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #666;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4169E1;
+    transition: width 0.3s ease;
+}
+.chapter-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid gray;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chapter-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.lesson-item:hover {
+    background-color: #f8f9fa;
+}
+
+.lesson-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.play-icon {
+    color: #4169E1;
+    font-size: 1.3rem;
+}
+
+.lesson-name {
+    font-weight: 500;
+    color: #444;
+}
+
+.start-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #4169E1;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.start-button:hover {
+    background-color: #3158d3;
+}
+
+.start-button.completed {
+    background-color: #28a745;
+}
+
+.no-content {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .course-container {
+        margin: 1rem auto;
+    }
+
+    .chapter-card {
+        padding: 1rem;
+    }
+
+    .lesson-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .lesson-right {
+        width: 100%;
+    }
+
+    .start-button {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+}
+</style>
+<div class="course-container">
+    <!-- Back button -->
+    <a href="{{ url_for('my_courses') }}" class="back-button">
+        Back to course
+    </a>
+
+    <!-- Course title and progress -->
+    <h1 class="course-title">{{ course.name }}</h1>
+    <div class="progress-section">
+        <div class="progress-header">
+            <span>Progress: {{ overall_progress|round(2) }}%</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: {{ overall_progress }}%"></div>
+        </div>
+    </div>
+
+    <!-- Chapters and lessons -->
+    <div class="chapters-container">
+        {% if chapters %}
+            {% for chapter in chapters %}
+                <div class="chapter-card ">
+                    <h2 class="chapter-title">Chapter {{ loop.index }}: {{ chapter.name }}</h2>
+
+                    {% if chapter.topics %}
+                        <div class="lessons-list">
+                            {% for topic in chapter.topics %}
+                                <div class="lesson-item">
+                                    <div class="lesson-left">
+                                        <div class="play-icon">
+                                           <a href="{{url_for('video_page', video_url=topic.video_url|replace('view?usp=sharing', 'preview'))}}">
+                                               <i class="fa-regular fa-circle-play"></i>
+                                           </a>
+                                        </div>
+                                        <span class="lesson-name">{{ topic.name }}</span>
+                                    </div>
+                                    <div class="lesson-right">
+                                        <a href="{{ url_for('video_page', video_url=topic.video_url|replace('view?usp=sharing', 'preview'))}}" class="start-button {% if topic.is_completed %}completed{% endif %}">
+                                            {% if topic.is_completed %}
+                                                Completed
+                                            {% else %}
+                                                Start
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-content">No topics available.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-content">No chapters available for this course.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<style>
+
+</style>
+    <div class="container mt-6">
+        <h2 class="mt-4">Welcome to the Dashboard</h2>
+        <p>Customize this section with additional content as needed.</p>
+    </div>
+    <div class="main" id="main-content">
+        <div class="content-box">
+            <div class="box blue">Total Students<br><strong>{{ total_students }}</strong></div>
+            <div class="box orange">New Students<br><strong>{{ new_students }}</strong></div>
+            <div class="box purple">Total Courses<br><strong>{{ total_courses }}</strong></div>
+            <div class="box red">Fees Collection<br><strong>${{ total_fees }}</strong></div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-container mt-4">
+            <div class="chart-card" style="height: 300px; width: 100%;">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="chart-card" style="height: 300px; width: 100%;">
+                <canvas id="doughnutChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Top 10 Courses Card -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h3>Top 10 Courses by Sales</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for course in top_courses %}
+                <li class="list-group-item">{{ course.course_name }} - {{ course.sales }} sales</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: {{ line_chart_labels|tojson|safe }},  // Labels from backend
+                datasets: [{
+                    label: 'Monthly Sales',
+                    data: {{ line_chart_data|tojson|safe }},  // Data from backend
+                    borderColor: '#007bff',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allow the chart to resize freely
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        const doughnutChart = new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: {{ doughnut_chart_labels|tojson|safe }},  // Labels from backend
+                datasets: [{
+                    label: 'Sales by Course',
+                    data: {{ doughnut_chart_data|tojson|safe }},  // Data from backend
+                    backgroundColor: ['#007bff', '#ff7f50', '#800080', '#ff6347', '#00ff00', '#ffff00', '#00ffff', '#ff00ff', '#c0c0c0', '#808080'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allow the chart to resize freely
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+{% endblock %}

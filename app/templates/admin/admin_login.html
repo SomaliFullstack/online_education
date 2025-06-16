@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background-image: url('/static/img/Untitled-1-01.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(25px);
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .card-body {
+            color: #fff;
+        }
+        .form-outline {
+            margin-bottom: 20px;
+        }
+        .form-outline label {
+            display: block;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-outline input {
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .form-outline input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+        h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .d-grid {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card" style="width: 100%; max-width: 400px;">
+            <div class="card-body">
+                <h2>Admin Login</h2>
+
+                <form id="loginForm" method="POST" action="/admin/login">
+                    <!-- Username Input -->
+                    <div class="form-outline">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required />
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-outline">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required />
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+
+    <script>
+        // This is the submit event handler
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();  // Prevent the form from submitting traditionally
+
+            const form = document.getElementById('loginForm');
+            const formData = new FormData(form);
+
+            const response = await fetch('/admin/login', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // If login is successful, trigger SweetAlert
+                Swal.fire({
+                    title: 'Good job!',
+                    text: 'super admin!',
+                    icon: 'success',
+                    showCancelButton: true,
+                    buttonsStyling: true,
+                    showCloseButton: false
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        window.location.href = data.redirect;  // Redirect to the admin dashboard
+                    }
+                });
+            } else {
+                // If the credentials are incorrect, show an error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Incorrect username or password. Please try again.',
+                });
+            }
+        });
+    </script>
+</body>
+</html>

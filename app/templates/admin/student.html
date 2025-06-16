@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+
+<style>
+    .active {
+        width: 150px;
+        height: 40px;
+        background-color: #90ee90;
+        border-radius: 25px;
+        color: green;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .de-active {
+        width: 150px;
+        height: 40px;
+        background-color: #ffcccb;
+        border-radius: 25px;
+        color: red;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .login {
+        width: 150px;
+        height: 40px;
+        background-color: #007bff;
+        border-radius: 25px;
+        color: white;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect */
+    .active:hover {
+        background-color: #218838;
+    }
+
+    .de-active:hover {
+        background-color: #c82333;
+    }
+
+    .login:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1 class="mx-4">Student List</h1>
+    <!-- Wrap the table in a responsive container -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table bg-primary text-white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <th scope="row">{{ student.student_id }}</th>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>
+                        {% if logged_in %}
+                            {% if student.status == 'active' %}
+                                <button class="active">active</button>
+                            {% else %}
+                                <button class="de-active">de-Active</button>
+                            {% endif %}
+                        {% else %}
+                            <button class="login">Login</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+<script>
+// Function to refresh the student list (for automatic refresh)
+function refreshStudentList() {
+    fetch('/admin/students')
+        .then(response => response.text())
+        .then(html => {
+            document.querySelector('.container').innerHTML = html;
+        })
+        .catch(error => console.log('Error fetching student list:', error));
+}
+
+// Refresh every 10 seconds
+setInterval(refreshStudentList, 10000);
+</script>

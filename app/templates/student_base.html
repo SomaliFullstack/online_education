@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- MDBootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/mdb-ui-kit/css/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"/>
+    <!-- Custom Styles -->
+    <style>
+        /* Color Variables */
+        :root {
+            /* Light Theme */
+            --primary-color: #4e73df;
+            --primary-light: #7e9efd;
+            --primary-dark: #2653d4;
+            --accent-color: #f6c23e;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+            
+            /* Backgrounds */
+            --bg-color: #f8f9fc;
+            --navbar-bg: #ffffff;
+            --sidebar-bg: #ffffff;
+            --card-bg: #ffffff;
+            --footer-bg: #020873;
+            
+            /* Text */
+            --text-color: #5a5c69;
+            --text-light: #858796;
+            --text-dark: #2d3748;
+            --sidebar-text: #5a5c69;
+            --footer-text: #ffffff;
+            
+            /* Borders */
+            --border-color: #e3e6f0;
+            
+            /* Effects */
+            --shadow-sm: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 0.35rem;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --primary-color: #4e73df;
+            --primary-light: #7e9efd;
+            --primary-dark: #2653d4;
+            --accent-color: #f6c23e;
+            
+            --bg-color: #1a202c;
+            --navbar-bg: #2d3748;
+            --sidebar-bg: #2d3748;
+            --card-bg: #2d3748;
+            --footer-bg: #35398f;
+            
+            --text-color: #f7fafc;
+            --text-light: #cbd5e0;
+            --text-dark: #f7fafc;
+            --sidebar-text: #f7fafc;
+            
+            --border-color: #4a5568;
+        }
+
+        body {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            padding: 0 1rem;
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            z-index: 999;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            
+            padding: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            object-fit: cover;
+            border: 3px solid var(--primary-light);
+            transition: var(--transition);
+        }
+
+        .sidebar img:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
+        .sidebar h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar li {
+            list-style: none;
+            margin: 0.25rem 0.75rem;
+        }
+
+        .sidebar li a {
+            color: var(--sidebar-text);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .sidebar li a:hover {
+            background-color: rgba(78, 115, 223, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .sidebar li a.active {
+            background-color: rgba(78, 115, 223, 0.2);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .sidebar li a i {
+            width: 25px;
+            margin-right: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .logout-btn .btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            border: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .logout-btn .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 250px;
+            margin-top: 70px;
+            padding: 2rem;
+            flex: 1;
+            transition: margin-left 0.3s ease-in-out;
+            z-index: 1;
+            overflow-y: auto;
+            height: calc(100vh - 70px);
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--primary-color);
+        }
+
+        /* User Profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .user-initial {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-right: 0.5rem;
+        }
+
+        /* Sidebar Toggle Button */
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .sidebar-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--primary-color);
+        }
+
+        /* Close Button for Mobile Sidebar */
+        .sidebar-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--sidebar-text);
+            font-size: 1.5rem;
+            display: none;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .sidebar-close:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--danger-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar{
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                width: 280px;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1000;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content, footer {
+                margin-left: 0;
+            }
+
+            body.sidebar-open {
+                overflow: hidden;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .user-initial {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            
+            .navbar{
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                width: 280px;
+            }
+            
+            .sidebar img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Navbar Menu */
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            z-index: 9999;
+            background-color: var(--sidebar-bg);
+            border-radius: 10px;
+            margin-left: 5px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--sidebar-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--sidebar-bg);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--sidebar-bg);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-content > * {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        
+        .navbar-profile {
+                position: static;
+                margin-left: auto;
+                padding: 0.5rem 1rem;
+            }
+
+
+            .navbar-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: auto; /* Push to the right */
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-right: 0.5rem;
+            display: inline-block; /* Always show name */
+        }
+
+        /* Ensure navbar collapse works properly */
+        .navbar-collapse {
+            flex-grow: 0; /* Don't let it grow and push profile out */
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--navbar-bg);
+                padding: 1rem;
+                box-shadow: var(--shadow-sm);
+                z-index: 999;
+            }
+            
+            /* Keep profile visible even when collapsed */
+            .navbar-profile {
+                position: static;
+                margin-left: auto;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* Stack nav items vertically on mobile */
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Adjust spacing for very small screens */
+            .user-name {
+                font-size: 0.875rem;
+                order: 2;
+            }
+            
+            .user-initial {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+   
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="sidebar-close d-lg-none" onclick="toggleSidebar()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="sidebar-header">
+            <img src="/static/img/4380747.jpg" class="img-fluid" />
+            <h2>caawiye</h2>
+        </div>
+        
+        <ul class="list-unstyled">
+            <li><a href="{{url_for('open_user_dashboard')}}" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{{url_for('my_courses')}}"><i class="fas fa-book-open"></i> My Courses</a></li>
+            <li><a href="{{url_for('user_notifications')}}"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+            <li><a href="{{url_for('student_assignment')}}"><i class="fas fa-tasks"></i> Assignments</a></li>
+            <li><a href="{{url_for('student_exam')}}"><i class="fas fa-file-alt"></i> Exams</a></li>
+            <li><a href="{{url_for('get_events')}}"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+        
+        <div class="logout-btn">
+            <a href="{{url_for('Stdlogout')}}" class="btn btn-primary">
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <div class="container-fluid">
+                <!-- Sidebar Toggle Button -->
+                <button class="sidebar-toggle d-lg-none" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- brand -->
+                <a class="navbar-brand" href="{{url_for('index')}}">
+                    LearnInnovation
+                </a>                
+    
+                <!-- Navbar Toggle Button -->
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCollapse">
+                    <i class="fas fa-bars"></i>
+                </button>
+    
+                <!-- Collapsible Navbar Content -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ms-auto ">
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About</a></li>
+                    </ul>
+    
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Theme Toggle Button -->
+                        <button class="theme-toggle" id="theme-toggle">
+                            <i class="fas fa-moon" id="theme-icon"></i>
+                        </button>
+                        
+                        <!-- User Profile -->
+                        <div class="user-profile">
+                            <span class="user-name ">{{ user_info.name if user_info.name else 'User' }}</span>
+                            <span class="user-initial">
+                                {{ user_info.name[0] if user_info.name else 'U' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+                    <p>&copy; 2025 Caawiye Tech. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end text-center">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MDBootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit/js/mdb.min.js"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script>
+        // Function to toggle between dark and light themes
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
+
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Function to load the saved theme preference
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.removeAttribute('data-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Sidebar Toggle Function
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+            document.body.classList.toggle("sidebar-open");
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            
+            if (window.innerWidth <= 992 && 
+                !sidebar.contains(event.target) && 
+                !sidebarToggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+
+        // Add active class to current page link
+        function setActiveLink() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.sidebar li a');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Add event listeners
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        window.addEventListener('load', function() {
+            loadTheme();
+            setActiveLink();
+        });
+
+        // Session management
+        document.addEventListener("DOMContentLoaded", function () {
+            let storedRole = sessionStorage.getItem("user_role");
+
+            if (!storedRole) {
+                fetch("/get-session-role")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.role) {
+                            sessionStorage.setItem("user_role", data.role);
+                        }
+                    });
+            }
+        });
+
+        window.addEventListener("beforeunload", function (event) {
+            if (!event.persisted) {
+                fetch("/logout-on-close", { method: "POST" });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+{% extends "base2.html" %}
+
+{% block title %}Course Management{% endblock %}
+
+{% block content %}
+<!-- Navbar -->
+
+<!-- Main Content -->
+<div class="container mt-5">
+  <!-- main content of teacher dashboard -->
+   <h1>welcome back teacher ,{}</h1>
+
+   <!-- cards student ,courses ,payments -->
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title">Students</h5>
+                <p class="card-text">Total Students: 100</p>
+                <a href="#" class="btn btn-primary">View Students</a>
+                
+
+
+
+                
+
+
+
+</div>
+
+{% endblock %}
+<script>
+  const courses = [];
+  let selectedCourseIndex = null;
+
+  // Add Course functionality
+  document.getElementById('course-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const courseName = document.getElementById('course-name').value.trim();
+    const courseImage = document.getElementById('course-image').value.trim();
+    const courseDescription = document.getElementById('course-description').value.trim();
+
+    if (courseName && courseImage && courseDescription) {
+      addCourse(courseName, courseImage, courseDescription);
+      displayCourses();
+    }
+  });
+
+  function addCourse(courseName, courseImage, courseDescription) {
+    const newCourse = { courseName, courseImage, courseDescription, topics: [] };
+    courses.push(newCourse);
+  }
+
+  // Display courses
+  function displayCourses() {
+    const coursesList = document.getElementById('courses-list');
+    coursesList.innerHTML = '';
+
+    courses.forEach((course, index) => {
+      const courseItem = document.createElement('div');
+      courseItem.classList.add('list-group-item');
+      courseItem.innerHTML = `
+        <h4>${course.courseName}</h4>
+        <img src="${course.courseImage}" alt="Course Image" class="img-fluid" style="width: 150px; height: auto;">
+        <p>${course.courseDescription}</p>
+        <button class="btn btn-info" onclick="selectCourse(${index})">Select Course</button>
+      `;
+      coursesList.appendChild(courseItem);
+    });
+  }
+
+  // Select Course to add topics
+  function selectCourse(index) {
+    selectedCourseIndex = index;
+    document.getElementById('add-topic-section').style.display = 'block';
+  }
+
+  // Add Topic functionality
+  document.getElementById('add-topic-btn').addEventListener('click', () => {
+    const topicName = document.getElementById('topic-name').value.trim();
+    const videoUrl = document.getElementById('video-url').value.trim();
+
+    if (topicName && videoUrl && selectedCourseIndex !== null) {
+      const topic = { topicName, videoUrl };
+      courses[selectedCourseIndex].topics.push(topic);
+      displayCourseTopics(selectedCourseIndex);
+    }
+  });
+
+  // Display Course Topics with links to video.html
+  function displayCourseTopics(courseIndex) {
+    const course = courses[courseIndex];
+    const topicDropdown = document.getElementById('topic-dropdown');
+    if (!topicDropdown) {
+      const dropdownDiv = document.createElement('div');
+      dropdownDiv.id = 'topic-dropdown';
+      const dropdownButton = document.createElement('button');
+      dropdownButton.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
+      dropdownButton.setAttribute('type', 'button');
+      dropdownButton.setAttribute('data-mdb-toggle', 'dropdown');
+      dropdownButton.textContent = 'Select Topic';
+      const dropdownMenu = document.createElement('ul');
+      dropdownMenu.classList.add('dropdown-menu');
+
+      course.topics.forEach(topic => {
+        const topicItem = document.createElement('li');
+        topicItem.classList.add('dropdown-item');
+
+        const videoUrl = encodeURIComponent(topic.videoUrl);
+        topicItem.textContent = topic.topicName;
+        topicItem.addEventListener('click', () => {
+          if (topic.videoUrl.includes('drive.google.com')) {
+            window.location.href = `video.html?videoUrl=${videoUrl}`;
+          } else {
+            alert('Invalid video URL');
+          }
+        });
+
+        dropdownMenu.appendChild(topicItem);
+      });
+
+      dropdownDiv.appendChild(dropdownButton);
+      dropdownDiv.appendChild(dropdownMenu);
+      document.getElementById('courses-list').children[courseIndex].appendChild(dropdownDiv);
+    }
+  }
+</script>
+
+<style>
+  /* Ensure the page takes up full height */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Main content area (to fill the available space) */
+  .main-content {
+    flex-grow: 1; /* This makes sure the content fills available space */
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; /* Ensures the footer is always at the bottom */
+  }
+
+  footer a {
+    color: rgb(30, 111, 217);
+    text-decoration: none;
+  }
+</style>
